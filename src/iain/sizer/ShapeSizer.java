@@ -67,6 +67,9 @@ public class ShapeSizer {
 		 if (width < 0) width *= -1;
 		 if (height < 0) height *= -1;
 		 Point2D.Double point = new Point2D.Double(0, 0);
+		 if (start.getX() < end.getX()) {
+			 
+		 }
 		 
 		shape.setCenter(point);
 		shape.setHeight(height);
