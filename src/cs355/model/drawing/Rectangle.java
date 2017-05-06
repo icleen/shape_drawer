@@ -34,6 +34,7 @@ public class Rectangle extends Shape {
 		this.upperLeft = upperLeft;
 		this.width = width;
 		this.height = height;
+		this.shapeType = Shape.SHAPE_TYPE.rectangle;
 	}
 
 	/**

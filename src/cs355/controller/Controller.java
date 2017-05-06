@@ -14,11 +14,10 @@ import cs355.model.drawing.Ellipse;
 import cs355.model.drawing.Line;
 import cs355.model.drawing.Rectangle;
 import cs355.model.drawing.Shape;
-import cs355.model.drawing.Shape.SHAPE_TYPE;
-import iain.model.Model;
-import iain.sizer.ShapeSizer;
 import cs355.model.drawing.Square;
 import cs355.model.drawing.Triangle;
+import iain.model.Model;
+import iain.sizer.ShapeSizer;
 
 public class Controller implements CS355Controller {
 	
@@ -45,10 +44,9 @@ public class Controller implements CS355Controller {
 			trianglePoints.add(p);
 			if (trianglePoints.size() == 3) {
 				Shape triangle = new Triangle(currentColor, trianglePoints.get(0), trianglePoints.get(1), trianglePoints.get(2));
-				currentShape.setShapeType(SHAPE_TYPE.triangle);
 				Model.SINGLETON.addShape(triangle);
 				trianglePoints.clear();
-//				System.out.println("added a triangle");
+				System.out.println("added a triangle");
 			}
 		}
 	}
@@ -75,23 +73,18 @@ public class Controller implements CS355Controller {
 		switch (currentState) {
 		case circle:
 			currentShape = new Circle(currentColor, start, 0);
-			currentShape.setShapeType(SHAPE_TYPE.circle);
 			break;
 		case ellipse:
 			currentShape = new Ellipse(currentColor, start, 0, 0);
-			currentShape.setShapeType(SHAPE_TYPE.ellipse);
 			break;
 		case line:
 			currentShape = new Line(currentColor, start, start);
-			currentShape.setShapeType(SHAPE_TYPE.line);
 			break;
 		case rectangle:
 			currentShape = new Rectangle(currentColor, start, 0, 0);
-			currentShape.setShapeType(SHAPE_TYPE.rectangle);
 			break;
 		case square:
 			currentShape = new Square(currentColor, start, 0);
-			currentShape.setShapeType(SHAPE_TYPE.square);
 			break;
 		default:
 			break;
@@ -152,7 +145,6 @@ public class Controller implements CS355Controller {
 	public void colorButtonHit(Color c) {
 		System.out.println("currentState: " + currentState);
 		currentColor = c;
-		System.out.println("color: " + currentColor);
 		GUIFunctions.changeSelectedColor(c);
 	}
 

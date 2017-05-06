@@ -29,6 +29,7 @@ public class Square extends Shape {
 		// Set fields.
 		this.upperLeft = upperLeft;
 		this.size = size;
+		this.shapeType = Shape.SHAPE_TYPE.square;
 	}
 
 	/**

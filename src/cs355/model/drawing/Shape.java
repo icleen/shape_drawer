@@ -47,12 +47,4 @@ public abstract class Shape {
 	public SHAPE_TYPE getShapeType() {
 		return shapeType;
 	}
-	
-	/**
-	 * Setter for this shape's type
-	 * @param type the new shape type
-	 */
-	public void setShapeType(SHAPE_TYPE type) {
-		this.shapeType = type;
-	}
 }

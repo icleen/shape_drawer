@@ -29,6 +29,7 @@ public class Circle extends Shape {
 		// Set fields.
 		this.center = center;
 		this.radius = radius;
+		this.shapeType = Shape.SHAPE_TYPE.circle;
 	}
 
 	/**

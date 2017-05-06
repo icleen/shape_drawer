@@ -34,6 +34,7 @@ public class Ellipse extends Shape {
 		this.center = center;
 		this.width = width;
 		this.height = height;
+		this.shapeType = Shape.SHAPE_TYPE.ellipse;
 	}
 
 	/**

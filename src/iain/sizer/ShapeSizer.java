@@ -60,8 +60,31 @@ public class ShapeSizer {
 		return values;
 	}
 	
-	public static void setEllipse(Ellipse shape, Point2D.Double start, Point2D.Double end) {
-		
+	public static Shape setEllipse(Ellipse shape, Point2D.Double start, Point2D.Double end) {
+		 double width = 0, height = 0;
+		 width = start.getX() - end.getX();
+		 height = start.getY() - end.getY();
+		 if (width < 0) width *= -1;
+		 if (height < 0) height *= -1;
+		 Point2D.Double point = new Point2D.Double(0, 0);
+		 
+		shape.setCenter(point);
+		shape.setHeight(height);
+		shape.setWidth(width);
+		return shape;
+	}
+	
+	public static int[] getEllipse(Circle shape) {
+		int[] values = new int[4];
+		Point2D.Double center = shape.getCenter();
+		double radius = shape.getRadius();
+		double x = center.getX() - radius;
+		double y = center.getY() - radius;
+		values[0] = (int) x;
+		values[1] = (int) y;
+		values[2] = (int) (radius * 2);
+		values[3] = values[2];
+		return values;
 	}
 	
 	public static void setRectangle(Rectangle shape, Point2D.Double start, Point2D.Double end) {

@@ -29,6 +29,7 @@ public class Line extends Shape {
 		// Set fields.
 		this.start = start;
 		this.end = end;
+		this.shapeType = Shape.SHAPE_TYPE.line;
 	}
 
 	/**

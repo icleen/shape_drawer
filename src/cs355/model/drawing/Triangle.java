@@ -30,6 +30,7 @@ public class Triangle extends Shape {
 		this.a = a;
 		this.b = b;
 		this.c = c;
+		this.shapeType = Shape.SHAPE_TYPE.triangle;
 	}
 
 	/**
