@@ -38,7 +38,7 @@ public class Controller implements CS355Controller {
 	
 	@Override
 	public void mouseClicked(MouseEvent arg0) {
-		System.out.println("clicked");
+//		System.out.println("clicked");
 		if (currentState == STATES.triangle) {
 			Point2D.Double p = new Point2D.Double();
 			p.setLocation(arg0.getX(), arg0.getY());
@@ -69,8 +69,8 @@ public class Controller implements CS355Controller {
 
 	@Override
 	public void mousePressed(MouseEvent arg0) {
-		System.out.println("pressed");
-		Point2D.Double start = new Point2D.Double();
+//		System.out.println("pressed");
+		start = new Point2D.Double();
 		start.setLocation(arg0.getX(), arg0.getY());
 		switch (currentState) {
 		case circle:
@@ -104,7 +104,7 @@ public class Controller implements CS355Controller {
 
 	@Override
 	public void mouseReleased(MouseEvent arg0) {
-		System.out.println("released");
+//		System.out.println("released");
 		
 		if (currentShape != null) {
 			Model.SINGLETON.addShape(currentShape);
@@ -140,6 +140,7 @@ public class Controller implements CS355Controller {
 		}
 		if (currentShape != null) {
 			Model.SINGLETON.addShape(currentShape);
+//			System.out.println("added shape");
 		}
 	}
 
