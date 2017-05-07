@@ -8,6 +8,8 @@ import cs355.model.drawing.Shape;
 
 public class Model extends CS355Drawing {
 	
+	public static final int TRIANGLE_POINTS = 3;
+	
 	private List<Shape> shapes;
 	private static final int BACK_INDEX = 0;
 	

@@ -37,16 +37,14 @@ public class Controller implements CS355Controller {
 	
 	@Override
 	public void mouseClicked(MouseEvent arg0) {
-//		System.out.println("clicked");
 		if (currentState == STATES.triangle) {
 			Point2D.Double p = new Point2D.Double();
 			p.setLocation(arg0.getX(), arg0.getY());
 			trianglePoints.add(p);
-			if (trianglePoints.size() == 3) {
+			if (trianglePoints.size() == Model.TRIANGLE_POINTS) {
 				Shape triangle = new Triangle(currentColor, trianglePoints.get(0), trianglePoints.get(1), trianglePoints.get(2));
 				Model.SINGLETON.addShape(triangle);
 				trianglePoints.clear();
-				System.out.println("added a triangle");
 			}
 		}
 	}
@@ -59,15 +57,11 @@ public class Controller implements CS355Controller {
 	public void mouseExited(MouseEvent arg0) {
 		if (currentShape != null) {
 			Model.SINGLETON.addShape(currentShape);
-//			System.out.println("shape created");
 		}
-		start = null;
-		currentShape = null;
 	}
 
 	@Override
 	public void mousePressed(MouseEvent arg0) {
-//		System.out.println("pressed");
 		start = new Point2D.Double();
 		start.setLocation(arg0.getX(), arg0.getY());
 		switch (currentState) {
@@ -91,17 +85,13 @@ public class Controller implements CS355Controller {
 		}
 		if (currentShape != null) {
 			Model.SINGLETON.addShape(currentShape);
-//			System.out.println("shape created");
 		}
 	}
 
 	@Override
 	public void mouseReleased(MouseEvent arg0) {
-//		System.out.println("released");
-		
 		if (currentShape != null) {
 			Model.SINGLETON.addShape(currentShape);
-//			System.out.println("shape created");
 		}
 		start = null;
 		currentShape = null;
@@ -109,31 +99,29 @@ public class Controller implements CS355Controller {
 
 	@Override
 	public void mouseDragged(MouseEvent arg0) {
-//		System.out.println("dragged");
 		Point2D.Double point = new Point2D.Double();
 		point.setLocation(arg0.getX(), arg0.getY());
 		switch (currentState) {
 		case circle:
-			ShapeSizer.setCircle((Circle) currentShape, start, point);
+			ShapeSizer.inst().setCircle((Circle) currentShape, start, point);
 			break;
 		case ellipse:
-			ShapeSizer.setEllipse((Ellipse) currentShape, start, point);
+			ShapeSizer.inst().setEllipse((Ellipse) currentShape, start, point);
 			break;
 		case line:
 			((Line) currentShape).setEnd(point);
 			break;
 		case rectangle:
-			ShapeSizer.setRectangle((Rectangle) currentShape, start, point);
+			ShapeSizer.inst().setRectangle((Rectangle) currentShape, start, point);
 			break;
 		case square:
-			ShapeSizer.setSquare((Square) currentShape, start, point);
+			ShapeSizer.inst().setSquare((Square) currentShape, start, point);
 			break;
 		default:
 			break;
 		}
 		if (currentShape != null) {
 			Model.SINGLETON.addShape(currentShape);
-//			System.out.println("added shape");
 		}
 	}
 
@@ -143,7 +131,6 @@ public class Controller implements CS355Controller {
 
 	@Override
 	public void colorButtonHit(Color c) {
-		System.out.println("currentState: " + currentState);
 		currentColor = c;
 		GUIFunctions.changeSelectedColor(c);
 	}
@@ -151,37 +138,31 @@ public class Controller implements CS355Controller {
 	@Override
 	public void lineButtonHit() {
 		currentState = STATES.line;
-		System.out.println("currentState: " + currentState);
 	}
 
 	@Override
 	public void squareButtonHit() {
 		currentState = STATES.square;
-		System.out.println("currentState: " + currentState);
 	}
 
 	@Override
 	public void rectangleButtonHit() {
 		currentState = STATES.rectangle;
-		System.out.println("currentState: " + currentState);
 	}
 
 	@Override
 	public void circleButtonHit() {
 		currentState = STATES.circle;
-		System.out.println("currentState: " + currentState);
 	}
 
 	@Override
 	public void ellipseButtonHit() {
 		currentState = STATES.ellipse;
-		System.out.println("currentState: " + currentState);
 	}
 
 	@Override
 	public void triangleButtonHit() {
 		currentState = STATES.triangle;
-		System.out.println("currentState: " + currentState);
 		trianglePoints = new ArrayList<>();
 	}
 
