@@ -39,6 +39,7 @@ public class Controller implements CS355Controller {
 	};
 	private STATES currentState;
 	private Color currentColor;
+	private int currentIndex;
 
 	private List<Point2D.Double> trianglePoints;
 	private Shape currentShape;
@@ -46,6 +47,8 @@ public class Controller implements CS355Controller {
 	
 	public Controller() {
 		currentState = STATES.none;
+		currentColor = Color.WHITE;
+//		GUIFunctions.changeSelectedColor(currentColor);
 	}
 	
 	@Override
@@ -68,9 +71,6 @@ public class Controller implements CS355Controller {
 
 	@Override
 	public void mouseExited(MouseEvent arg0) {
-		if (currentShape != null) {
-			Model.SINGLETON.addShape(currentShape);
-		}
 	}
 
 	@Override
@@ -97,17 +97,15 @@ public class Controller implements CS355Controller {
 			break;
 		}
 		if (currentShape != null) {
-			Model.SINGLETON.addShape(currentShape);
+			currentIndex = Model.SINGLETON.addShape(currentShape);
 		}
 	}
 
 	@Override
 	public void mouseReleased(MouseEvent arg0) {
-		if (currentShape != null) {
-			Model.SINGLETON.addShape(currentShape);
-		}
 		start = null;
 		currentShape = null;
+		currentIndex = -1;
 	}
 
 	@Override
@@ -134,7 +132,8 @@ public class Controller implements CS355Controller {
 			break;
 		}
 		if (currentShape != null) {
-			Model.SINGLETON.addShape(currentShape);
+			Model.SINGLETON.deleteShape(currentIndex);
+			currentIndex = Model.SINGLETON.addShape(currentShape);
 		}
 	}
 

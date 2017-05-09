@@ -34,12 +34,15 @@ public class Model extends CS355Drawing {
 		this.notifyObservers();
 		return shapes.size() - 1;
 	}
+	
+	public void setShape(Shape s, int index) {
+		shapes.set(index, s);
+	}
 
 	@Override
 	public void deleteShape(int index) {
 		shapes.remove(index);
 		this.setChanged();
-		this.notifyObservers();
 	}
 
 	@Override

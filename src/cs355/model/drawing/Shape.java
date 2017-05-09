@@ -15,6 +15,7 @@ public abstract class Shape {
 	// The color of this shape.
 	protected Color color;
 	protected SHAPE_TYPE shapeType = SHAPE_TYPE.none;
+	protected int index;
 
 	/**
 	 * Basic constructor that sets the field.
@@ -46,5 +47,13 @@ public abstract class Shape {
 	 */
 	public SHAPE_TYPE getShapeType() {
 		return shapeType;
+	}
+	
+	public int getIndex() {
+		return index;
+	}
+	
+	public void setIndex(int index) {
+		this.index = index;
 	}
 }
