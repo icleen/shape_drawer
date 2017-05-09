@@ -14,7 +14,7 @@ import cs355.model.drawing.Shape;
 import cs355.model.drawing.Square;
 import cs355.model.drawing.Triangle;
 import iain.model.Model;
-import iain.sizer.ShapeSizer;
+import iain.model.ShapeSizer;
 
 public class View implements ViewRefresher {
 	
