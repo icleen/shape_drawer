@@ -3,10 +3,20 @@ package cs355.controller;
 import java.awt.Color;
 import java.awt.event.MouseEvent;
 import java.awt.geom.Point2D;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.Reader;
+import java.io.Writer;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+
+import com.google.gson.Gson;
 
 import cs355.GUIFunctions;
 import cs355.model.drawing.Circle;
@@ -17,9 +27,12 @@ import cs355.model.drawing.Shape;
 import cs355.model.drawing.Square;
 import cs355.model.drawing.Triangle;
 import iain.model.Model;
+import iain.model.SaveStructure;
 import iain.model.ShapeSizer;
 
 public class Controller implements CS355Controller {
+	
+	private static Gson gson = new Gson();
 	
 	private enum STATES {
 			none, circle, ellipse, line, rectangle, square, triangle
@@ -231,12 +244,41 @@ public class Controller implements CS355Controller {
 
 	@Override
 	public void saveDrawing(File file) {
-
+		SaveStructure save = new SaveStructure();
+		save.fromModel();
+		Writer writer = null;
+		try {
+			writer = new BufferedWriter( new FileWriter( file ) );
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		gson.toJson(save, writer);
+		try {
+			writer.close();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	@Override
 	public void openDrawing(File file) {
-
+		Reader reader = null;
+		try {
+			reader = new BufferedReader( new FileReader( file ) );
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		SaveStructure save = (SaveStructure) gson.fromJson(reader, SaveStructure.class);
+		save.toModel();
+		try {
+			reader.close();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	@Override
